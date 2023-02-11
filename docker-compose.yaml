@@ -1,0 +1,9 @@
+version: '3'
+
+services:
+  app:
+    image: ada-deva-observability
+    container_name: app-observability
+    platform: linux/arm64
+    ports:
+      - 5001:5001
