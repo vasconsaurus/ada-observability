@@ -1,9 +1,11 @@
-### **pela linha de comando**
+### **constrói a imagem**
 
 `docker image build -t ada-deva-observability .`
 
+### **roda conteiner pela linha de comando**
+
 `docker run -p 5001:5001 -d ada-deva-observability`
 
-### **pelo docker compose**
+### **roda conteiner pelo docker compose**
 
 `docker-compose up`
