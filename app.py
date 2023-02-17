@@ -1,3 +1,6 @@
+import time
+import random
+
 from flask import Flask, render_template
 from prometheus_flask_exporter import PrometheusMetrics
 
@@ -10,6 +13,7 @@ metrics = PrometheusMetrics(app)
                  "Número de papéis de renda fixa efetivados",
                  labels={"tipo": "ACOES"})
 def renda_fixa():
+    time.sleep(random.randint(1, 10))
     return render_template("lista.html", title="Renda Fixa")
 
 
