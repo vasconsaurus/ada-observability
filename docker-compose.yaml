@@ -7,6 +7,10 @@ services:
     platform: linux/amd64
     ports:
       - 5001:5001
+
+  app-client:
+    image: ada-app-client
+    container_name: app-client
   prometheus:
     image: prom/prometheus
     container_name: prometheus
