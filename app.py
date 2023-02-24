@@ -30,5 +30,25 @@ def renda_variavel():
     return render_template("lista.html", title="Renda Variável")
 
 
+@app.route("/cripto")
+@metrics.counter("efetivacao_cripto",
+                 "Número de papéis de cripto efetivados",
+                 labels={"tipo": "CRIPTO"})
+def cripto():
+    time.sleep(random.randint(1, 10))
+    quantidade_usuarios_online.set(random.randint(1, 100))
+    return render_template("lista.html", title="Cripto")
+
+
+@app.route("/fii")
+@metrics.counter("efetivacao_fii",
+                 "Número de papéis de fii efetivados",
+                 labels={"tipo": "FII"})
+def fii():
+    time.sleep(random.randint(1, 10))
+    quantidade_usuarios_online.set(random.randint(1, 100))
+    return render_template("lista.html", title="Fii")
+
+
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port="5001")
