@@ -12,41 +12,32 @@ quantidade_usuarios_online = prom.Gauge(
     "quantidade_usuarios_online", "Números de usuários online no momento")
 
 
-@app.route("/renda-fixa")
-@metrics.counter("efetivacao_renda_fixa",
-                 "Número de papéis de renda fixa efetivados",
-                 labels={"tipo": "ACOES"})
-def renda_fixa():
+def simulacao_usuarios():
     time.sleep(random.randint(1, 10))
     quantidade_usuarios_online.set(random.randint(1, 100))
+
+
+@app.route("/renda-fixa")
+def renda_fixa():
+    simulacao_usuarios()
     return render_template("lista.html", title="Renda Fixa")
 
 
 @app.route("/renda-variavel")
-@metrics.counter("efetivacao_renda_variavel",
-                 "Número de papéis de renda variável efetivados",
-                 labels={"tipo": "ACOES"})
 def renda_variavel():
+    simulacao_usuarios()
     return render_template("lista.html", title="Renda Variável")
 
 
 @app.route("/cripto")
-@metrics.counter("efetivacao_cripto",
-                 "Número de papéis de cripto efetivados",
-                 labels={"tipo": "CRIPTO"})
 def cripto():
-    time.sleep(random.randint(1, 10))
-    quantidade_usuarios_online.set(random.randint(1, 100))
+    simulacao_usuarios()
     return render_template("lista.html", title="Cripto")
 
 
 @app.route("/fii")
-@metrics.counter("efetivacao_fii",
-                 "Número de papéis de fii efetivados",
-                 labels={"tipo": "FII"})
 def fii():
-    time.sleep(random.randint(1, 10))
-    quantidade_usuarios_online.set(random.randint(1, 100))
+    simulacao_usuarios()
     return render_template("lista.html", title="Fii")
 
 
