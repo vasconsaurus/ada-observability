@@ -11,6 +11,10 @@ services:
   app-client:
     image: ada-app-client
     container_name: app-client
+    platform: linux/amd64
+    restart: always
+    depends_on:
+      - app
   prometheus:
     image: prom/prometheus
     container_name: prometheus
