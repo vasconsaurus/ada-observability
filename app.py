@@ -1,3 +1,4 @@
+import http.client
 import time
 import random
 
@@ -20,6 +21,8 @@ def simulacao_usuarios():
 @app.route("/renda-fixa")
 def renda_fixa():
     simulacao_usuarios()
+    if random.randint(0, 1) == 0:
+        return http.client.BAD_REQUEST
     return render_template("lista.html", title="Renda Fixa")
 
 
