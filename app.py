@@ -18,36 +18,35 @@ def simulacao_usuarios():
     quantidade_usuarios_online.set(random.randint(1, 100))
 
 
-def erro_bad_request():
-    if random.randint(0, 1) == 0:
-        return http.client.BAD_REQUEST
-
-
 @app.route("/renda-fixa")
 def renda_fixa():
     simulacao_usuarios()
-    erro_bad_request()
+    if random.randint(0, 1) == 0:
+        return http.client.BAD_REQUEST
     return render_template("lista.html", title="Renda Fixa")
 
 
 @app.route("/renda-variavel")
 def renda_variavel():
     simulacao_usuarios()
-    erro_bad_request()
+    if random.randint(0, 1) == 0:
+        return http.client.BAD_REQUEST
     return render_template("lista.html", title="Renda Variável")
 
 
 @app.route("/cripto")
 def cripto():
     simulacao_usuarios()
-    erro_bad_request()
+    if random.randint(0, 1) == 0:
+        return http.client.BAD_REQUEST
     return render_template("lista.html", title="Cripto")
 
 
 @app.route("/fii")
 def fii():
     simulacao_usuarios()
-    erro_bad_request()
+    if random.randint(0, 1) == 0:
+        return http.client.BAD_REQUEST
     return render_template("lista.html", title="Fii")
 
 
