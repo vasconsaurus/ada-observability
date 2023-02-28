@@ -26,6 +26,7 @@ def simulacao_usuarios():
 
 @app.route("/renda-fixa")
 def renda_fixa():
+    # pylint: disable=no-member
     app.logger.info("Acessando Renda Fixa!")
     simulacao_usuarios()
     if random.randint(0, 1) == 0:
