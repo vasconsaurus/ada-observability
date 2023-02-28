@@ -2,9 +2,15 @@ import http.client
 import time
 import random
 
+import logging
 from flask import Flask, render_template
 import prometheus_client as prom
 from prometheus_flask_exporter import PrometheusMetrics
+
+logging.basicConfig(
+    level=logging.DEBUG,
+    format="%(asctime)s - %(name)s - %(levelname)s - %(message)s",
+    datefmt="%Y-%m-%d %H:%M:%S")
 
 app = Flask(__name__)
 metrics = PrometheusMetrics(app)
@@ -20,6 +26,7 @@ def simulacao_usuarios():
 
 @app.route("/renda-fixa")
 def renda_fixa():
+    app.logger.info("Acessando Renda Fixa!")
     simulacao_usuarios()
     if random.randint(0, 1) == 0:
         return http.client.BAD_REQUEST

@@ -43,6 +43,34 @@ services:
       - /etc/machine-id:/etc/machine-id:ro
       - /var/lib/dbus/machine-id:/var/lib/dbus/machine-id:ro
     restart: unless-stopped
+
+  # https://go2docs.graylog.org/5-0/downloading_and_installing_graylog/docker_installation.htm
+  mongo:
+    image: mongo:5.0.13
+    container_name: mongodb
+
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch-oss:7.10.2
+    container_name: elasticsearch
+    environment:
+    - http.host=0.0.0.0
+    - transport.host=localhost
+    - network.host=0.0.0.0
+    - "ES_JAVA_OPTS=Dlog4j2.formatMsgNoLookups=true -Xms512m -Xmx512m"
+
+  graylog:
+    image: graylog/graylog:5.0
+    container_name: graylog
+    environment:
+    # CHANGE ME (must be at least 16 characters)!
+    - GRAYLOG_PASSWORD_SECRET=somepasswordpepper
+    # Password: admin
+    - GRAYLOG_ROOT_PASSWORD_SHA2=8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918
+    - GRAYLOG_HTTP_EXTERNAL_URI=http://127.0.0.1:9000/
+    entrypoint: /usr/bin/tini -- wait-for-it elasticsearch:9200 --  /docker-entrypoint.sh
+    restart: always
+    depends_on:
+      - mongo
   grafana:
     image: grafana/grafana
     container_name: grafana
