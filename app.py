@@ -3,12 +3,13 @@ import time
 import random
 
 import logging
-from flask import Flask, render_template
+from flask import Flask, render_template, request
 import prometheus_client as prom
 from prometheus_flask_exporter import PrometheusMetrics
 
+# configure the logger
 logging.basicConfig(
-    level=logging.DEBUG,
+    level=logging.INFO,
     format="%(asctime)s - %(name)s - %(levelname)s - %(message)s",
     datefmt="%Y-%m-%d %H:%M:%S")
 
@@ -36,6 +37,8 @@ def renda_fixa():
 
 @app.route("/renda-variavel")
 def renda_variavel():
+    app.logger.info("%s %s %s %s", request.remote_addr, request.method,
+                    request.scheme, request.full_path)
     simulacao_usuarios()
     if random.randint(0, 1) == 0:
         return http.client.BAD_REQUEST
