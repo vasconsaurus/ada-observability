@@ -38,7 +38,7 @@ def renda_fixa():
 @app.route("/renda-variavel")
 def renda_variavel():
     # pylint: disable=no-member
-    app.logger.info("%s %s %s %s", request.remote_addr, request.method,
+    app.logger.info('%s %s %s %s', request.remote_addr, request.method,
                     request.scheme, request.full_path)
     simulacao_usuarios()
     if random.randint(0, 1) == 0:
@@ -49,7 +49,7 @@ def renda_variavel():
 @app.route("/cripto")
 def cripto():
     # pylint: disable=no-member
-    app.logger.info("%s %s %s %s", request.remote_addr, request.method,
+    app.logger.info('%s %s %s %s', request.remote_addr, request.method,
                     request.scheme, request.full_path)
     simulacao_usuarios()
     if random.randint(0, 1) == 0:
@@ -60,7 +60,7 @@ def cripto():
 @app.route("/fii")
 def fii():
     # pylint: disable=no-member
-    app.logger.info("%s %s %s %s", request.remote_addr, request.method,
+    app.logger.info('%s %s %s %s', request.remote_addr, request.method,
                     request.scheme, request.full_path)
     simulacao_usuarios()
     if random.randint(0, 1) == 0:
